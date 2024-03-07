@@ -16,6 +16,8 @@ git clone https://github.com/jueltter/reto-advance-02-frontend.git
 cd ./reto-advance-02-frontend
 # cambiarse a la rama master
 git checkout master
+# descargar módulos
+npm install
 # servir la aplicación localmente
 ng serve
 
