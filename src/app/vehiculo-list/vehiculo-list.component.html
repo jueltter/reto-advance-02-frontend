@@ -1,0 +1,40 @@
+<mat-form-field>
+  <mat-label>Fecha</mat-label>
+  <input matInput (dateInput)="establecerFecha('input', $event)" [matDatepicker]="picker" [value]="fechaAsFormControl.value">
+  <!--mat-hint>MM/DD/YYYY</mat-hint-->
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Hora</mat-label>
+  <select matNativeControl (change)="establecerHora($event)">
+    <option *ngFor="let option of horas" [value]="option.value"
+            [selected]="horaSeleccionada === option.value">{{ option.viewValue }}</option>
+  </select>
+</mat-form-field>
+
+<table mat-table [dataSource]="vehiculos" matSort matSortDisableClear>
+  <ng-container matColumnDef="placa">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Placa</th>
+    <td mat-cell *matCellDef="let vehiculo">{{vehiculo.placa}}</td>
+  </ng-container>
+  <ng-container matColumnDef="color">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Color</th>
+    <td mat-cell *matCellDef="let vehiculo">{{vehiculo.color}}</td>
+  </ng-container>
+  <ng-container matColumnDef="modelo">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Modelo</th>
+    <td mat-cell *matCellDef="let vehiculo">{{vehiculo.modelo}} ({{vehiculo.marca}}, {{vehiculo.anioModelo}})</td>
+  </ng-container>
+  <ng-container matColumnDef="chasis">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Chasis</th>
+    <td mat-cell *matCellDef="let vehiculo">{{vehiculo.chasis}}</td>
+  </ng-container>
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+    <td mat-cell *matCellDef="let vehiculo"><button mat-raised-button color="primary" (click)="consultarRestriccionVehicular(vehiculo)">Consultar</button></td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnNames"></tr>
+</table>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,15]"></mat-paginator>

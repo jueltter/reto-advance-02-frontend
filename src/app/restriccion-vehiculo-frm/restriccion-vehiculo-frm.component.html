@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Vehículo</h1>
+<mat-dialog-content>
+  <mat-list>
+    <mat-list-item>
+      <span matListItemTitle>Placa</span>
+      <span matListItemLine>{{data.vehiculo.placa}}</span>
+    </mat-list-item>
+    <mat-list-item>
+      <span matListItemTitle>Color</span>
+      <span matListItemLine>{{data.vehiculo.color}}</span>
+    </mat-list-item>
+    <mat-list-item>
+      <span matListItemTitle>Modelo</span>
+      <span matListItemLine>{{data.vehiculo.modelo}} ({{data.vehiculo.marca}}, {{data.vehiculo.anioModelo}})</span>
+    </mat-list-item>
+    <mat-list-item>
+      <span matListItemTitle>Chasis</span>
+      <span matListItemLine>{{data.vehiculo.chasis}}</span>
+    </mat-list-item>
+    <mat-list-item>
+      <span matListItemTitle>Kilometraje</span>
+      <span matListItemLine>{{data.vehiculo.kilometraje}}</span>
+    </mat-list-item>
+    <mat-list-item>
+      <span matListItemTitle>¿Puede circular?</span>
+      <span matListItemLine>{{mensaje}}</span>
+    </mat-list-item>
+  </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
