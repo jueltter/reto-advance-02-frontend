@@ -1,1 +1,62 @@
-<p>crear-vehiculo-frm works!</p>
+<form [formGroup]="vehiculoForm" (ngSubmit)="createVehiculo()">
+  <mat-card class="create-card">
+    <mat-card-header>
+      <mat-card-title>Vehículo</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <mat-form-field class="create-input">
+          <mat-label>Placa</mat-label>
+          <input matInput formControlName="placa" placeholder="PBA1234" required/>
+          <mat-error>placa es incorrecto</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="create-input">
+          <mat-label>Color</mat-label>
+          <input matInput formControlName="color" placeholder="Negro" required/>
+          <mat-error>color es incorrecto</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="create-input">
+          <mat-label>Marca</mat-label>
+          <input matInput formControlName="marca" placeholder="Kia" required/>
+          <mat-error>marca es incorrecto</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="create-input">
+          <mat-label>Modelo</mat-label>
+          <input matInput formControlName="modelo" placeholder="Camioneta" required/>
+          <mat-error>modelo es incorrecto</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="create-input">
+          <mat-label>Año modelo</mat-label>
+          <input matInput formControlName="anioModelo" placeholder="2010" required/>
+          <mat-error>año modelo es incorrecto</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="create-input">
+          <mat-label>Chasis</mat-label>
+          <input matInput formControlName="chasis" placeholder="84YKX4U6CT6ZD78HV" required/>
+          <mat-error>chasis es incorrecto</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="create-input">
+          <mat-label>Kilometraje</mat-label>
+          <input matInput formControlName="kilometraje" placeholder="1000" required/>
+          <mat-error>chasis es incorrecto</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!vehiculoForm.valid">Añadir</button>
+    </mat-card-actions>
+
+  </mat-card>
+</form>

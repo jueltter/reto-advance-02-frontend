@@ -1,3 +1,7 @@
+<mat-form-field class="create-input">
+  <mat-label>Placa</mat-label>
+  <input matInput (keyup)="establecerPlaca($event)"/>
+</mat-form-field>
 <mat-form-field>
   <mat-label>Fecha</mat-label>
   <input matInput (dateInput)="establecerFecha('input', $event)" [matDatepicker]="picker" [value]="fechaAsFormControl.value">
@@ -38,3 +42,4 @@
   <tr mat-row *matRowDef="let row; columns: columnNames"></tr>
 </table>
 <mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,15]"></mat-paginator>
+<app-crear-vehiculo-frm (added)="onAdd($event)"></app-crear-vehiculo-frm>

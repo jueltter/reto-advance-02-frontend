@@ -30,6 +30,7 @@ export class VehiculoListComponent  implements OnInit {
 
   fechaAsFormControl : FormControl = new FormControl<Date>(new Date());
   fechaSeleccionada : Date | null = this.fechaAsFormControl.value;
+  placa : string = '';
 
   horas : Hora[] = [
     {value: '0', viewValue: '0'},
@@ -62,12 +63,18 @@ export class VehiculoListComponent  implements OnInit {
 
   establecerFecha(type: string, event: MatDatepickerInputEvent<Date>) {
     this.fechaSeleccionada = event.value;
-    console.log(`fecha establecida: ${this.fechaSeleccionada}`);
+    //console.log(`fecha establecida: ${this.fechaSeleccionada}`);
   }
 
   establecerHora(event: Event) {
     this.horaSeleccionada = (event.target as HTMLSelectElement).value;
-    console.log(`hora establecida: ${this.horaSeleccionada}`);
+    //console.log(`hora establecida: ${this.horaSeleccionada}`);
+  }
+
+  establecerPlaca(event: Event) {
+    this.placa = (event.target as HTMLInputElement).value;
+    //console.log(`placa: ${this.placa}`);
+    this.findAll();
   }
 
   constructor(
@@ -81,7 +88,7 @@ export class VehiculoListComponent  implements OnInit {
   }
 
   private findAll() {
-    this.vehiculosService.findAll().subscribe(vehiculos => {
+    this.vehiculosService.search(this.placa.toUpperCase()).subscribe(vehiculos => {
       this.vehiculos = new MatTableDataSource(vehiculos);
       this.vehiculos.sort = this.sort;
       this.vehiculos.paginator = this.paginator;
@@ -100,6 +107,10 @@ export class VehiculoListComponent  implements OnInit {
         alert(`Fecha y hora es menor que la fecha y hora actual!`);
       });
     }
+  }
+
+  onAdd(vehicle: Vehiculo) {
+    this.findAll();
   }
 
 }

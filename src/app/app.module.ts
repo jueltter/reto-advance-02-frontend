@@ -17,6 +17,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatSelectModule} from "@angular/material/select";
+import { MatCardModule} from "@angular/material/card";
 import { VehiculoListComponent } from './vehiculo-list/vehiculo-list.component';
 import { CrearVehiculoFrmComponent } from './crear-vehiculo-frm/crear-vehiculo-frm.component';
 import { RestriccionVehiculoFrmComponent } from './restriccion-vehiculo-frm/restriccion-vehiculo-frm.component';
@@ -45,6 +46,7 @@ import { RestriccionVehiculoFrmComponent } from './restriccion-vehiculo-frm/rest
     FormsModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatCardModule,
     HttpClientModule
   ],
   providers: [],
