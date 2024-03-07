@@ -3,6 +3,7 @@ import { map, Observable } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Restriccion } from "./restriccion";
 import { DateUtils} from "./date-utils";
+import { environment } from "../environments/environment";
 
 interface RestriccionDTO {
   placa: string;
@@ -15,7 +16,7 @@ interface RestriccionDTO {
 })
 export class RestriccionesService {
 
-  private url = 'http://localhost:8081/restricciones';
+  private url = environment.backendUrl + '/restricciones';
 
   constructor(private http: HttpClient) {}
 
