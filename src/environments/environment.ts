@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  backendUrl: 'https://reto-advance-01-backend-production.up.railway.app'
+  backendUrl: 'https://samagua1-dbbegug6f8a6bkah.canadacentral-01.azurewebsites.net'
 };
