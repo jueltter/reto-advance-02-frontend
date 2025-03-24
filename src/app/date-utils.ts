@@ -9,6 +9,27 @@ export class DateUtils {
     return `${fecha.getFullYear()}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
   }
 
+  static getDay(dayWeek: number): string {
+    switch (dayWeek) {
+      case 1:
+        return 'Lunes';
+      case 2:
+        return 'Martes';
+      case 3:
+        return 'Miércoles';
+      case 4:
+        return 'Jueves';
+      case 5:
+        return 'Viernes';
+      case 6:
+        return 'Sábado';
+      case 7:
+        return 'Domingo';
+      default:
+        return 'Día no válido';
+    }
+  }
+
   static stringToDate(string: string): Date {
     // yyyy-MM-dd HH:mm:ss
     // 0123456789012345678

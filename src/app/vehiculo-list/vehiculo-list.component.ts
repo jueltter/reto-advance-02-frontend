@@ -10,6 +10,9 @@ import { RestriccionesService} from "../restricciones.service";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import { FormControl } from "@angular/forms";
 import {DateUtils} from "../date-utils";
+import { HorariosService } from '../horarios.service';
+import {switchMap} from "rxjs";
+import {Restriccion} from "../restriccion";
 
 interface Hora {
   value: string;
@@ -80,6 +83,7 @@ export class VehiculoListComponent  implements OnInit {
   constructor(
     private vehiculosService: VehiculosService,
     private restriccionesService: RestriccionesService,
+    private horariosService: HorariosService,
     private dialog: MatDialog) {}
 
 
@@ -100,9 +104,20 @@ export class VehiculoListComponent  implements OnInit {
 
     if (this.fechaSeleccionada !== null) {
       let fechaHoraSeleccionada : Date = DateUtils.combine(this.fechaSeleccionada, this.horaSeleccionada);
-      this.restriccionesService.findByPlacaAndFecha(vehiculo.placa, fechaHoraSeleccionada).subscribe(restricciones => {
-        let [restriccion] = restricciones;
-        this.dialog.open(RestriccionVehiculoFrmComponent, { data : {vehiculo, restriccion}});
+      let restriccion: Restriccion;
+      this.restriccionesService.findByPlacaAndFecha(vehiculo.placa, fechaHoraSeleccionada).pipe(
+
+        switchMap(
+          (restricciones: Restriccion[]) => {
+            let [auxRestriccion] = restricciones;
+            restriccion = auxRestriccion;
+            return this.horariosService.findByPlaca(restriccion.placa);
+          }
+
+        ))
+
+        .subscribe(horarios => {
+        this.dialog.open(RestriccionVehiculoFrmComponent, { data : {vehiculo, restriccion, horarios}});
       }, error => {
         alert(`Fecha y hora es menor que la fecha y hora actual!`);
       });
